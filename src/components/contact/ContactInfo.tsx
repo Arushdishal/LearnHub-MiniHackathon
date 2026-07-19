@@ -24,7 +24,7 @@ export default function ContactInfo() {
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="h-full rounded-3xl border border-white/60 bg-white/70 p-6 shadow-xl backdrop-blur-xl sm:p-8"
+      className="h-fit rounded-3xl border border-white/60 bg-white/85 p-6 shadow-xl backdrop-blur-xl sm:p-8"
     >
       <h2 className="text-2xl font-bold text-slate-900">Contact Information</h2>
       <p className="mt-1 text-sm text-slate-600">Reach us anytime — we're here to help you learn.</p>

@@ -1,5 +1,22 @@
+import type { InputHTMLAttributes } from "react";
+
+type InputFieldProps = InputHTMLAttributes<HTMLInputElement> & {
+  label: string;
+  error?: string;
+  id?: string;
+  name: string;
+  className?: string;
+};
+
 // Reusable text/email/tel/date input with label + inline error.
-export default function InputField({ label, error, id, name, className = "", ...rest }) {
+export default function InputField({
+  label,
+  error,
+  id,
+  name,
+  className = "",
+  ...rest
+}: InputFieldProps) {
   const inputId = id || name;
   return (
     <div className="w-full">

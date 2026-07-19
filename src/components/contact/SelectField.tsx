@@ -1,3 +1,20 @@
+import type { SelectHTMLAttributes } from "react";
+
+type SelectOption = {
+  value: string;
+  label: string;
+};
+
+type SelectFieldProps = SelectHTMLAttributes<HTMLSelectElement> & {
+  label: string;
+  error?: string;
+  options: SelectOption[];
+  placeholder?: string;
+  id?: string;
+  name: string;
+  className?: string;
+};
+
 // Reusable select with a leading placeholder option.
 export default function SelectField({
   label,
@@ -8,7 +25,7 @@ export default function SelectField({
   name,
   className = "",
   ...rest
-}) {
+}: SelectFieldProps) {
   const selectId = id || name;
   return (
     <div className="w-full">

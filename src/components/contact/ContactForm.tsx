@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
 import { FiSend, FiRotateCcw } from "react-icons/fi";
 import InputField from "./InputField.js";
@@ -22,6 +22,10 @@ const initial = {
   message: "",
 };
 
+type ContactFormValues = typeof initial;
+
+type ContactFormErrors = Partial<Record<keyof ContactFormValues, string>>;
+
 const categoryOptions = [
   { value: "web-development", label: "Web Development" },
   { value: "data-science", label: "Data Science" },
@@ -44,8 +48,8 @@ const interestOptions = [
 ];
 
 // JS-driven validation — does not rely on HTML validation.
-function validate(v) {
-  const e = {};
+function validate(v: ContactFormValues): ContactFormErrors {
+  const e: ContactFormErrors = {};
   if (!v.fullName.trim()) e.fullName = "Full name is required";
   if (!v.email.trim()) e.email = "Email is required";
   else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email)) e.email = "Enter a valid email";
@@ -61,12 +65,12 @@ function validate(v) {
 
 export default function ContactForm() {
   const [values, setValues] = useState(initial);
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<ContactFormErrors>({});
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [submitError, setSubmitError] = useState(null);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
-  const update = (key, value) => {
+  const update = <K extends keyof ContactFormValues>(key: K, value: ContactFormValues[K]) => {
     setValues((v) => ({ ...v, [key]: value }));
     if (errors[key]) setErrors((er) => ({ ...er, [key]: undefined }));
   };
@@ -77,7 +81,7 @@ export default function ContactForm() {
     setSubmitError(null);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const found = validate(values);
     if (Object.keys(found).length) {
@@ -123,7 +127,7 @@ export default function ContactForm() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="rounded-3xl border border-white/60 bg-white/80 p-6 shadow-xl backdrop-blur-xl sm:p-8"
+      className="rounded-3xl border border-white/60 bg-white/85 p-6 shadow-xl backdrop-blur-xl sm:p-8"
     >
       <h2 className="text-2xl font-bold text-slate-900">Enrollment Form</h2>
       <p className="mt-1 text-sm text-slate-600">

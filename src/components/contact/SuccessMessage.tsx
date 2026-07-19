@@ -1,8 +1,12 @@
 import { motion } from "framer-motion";
 import { FiCheckCircle, FiRefreshCw } from "react-icons/fi";
 
+type SuccessMessageProps = {
+  onReset: () => void;
+};
+
 // Animated success confirmation shown after Formspree submission.
-export default function SuccessMessage({ onReset }) {
+export default function SuccessMessage({ onReset }: SuccessMessageProps) {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}

@@ -1,5 +1,22 @@
+import type { TextareaHTMLAttributes } from "react";
+
+type TextAreaFieldProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
+  label: string;
+  error?: string;
+  id?: string;
+  name: string;
+  className?: string;
+};
+
 // Reusable textarea with matching styling.
-export default function TextAreaField({ label, error, id, name, className = "", ...rest }) {
+export default function TextAreaField({
+  label,
+  error,
+  id,
+  name,
+  className = "",
+  ...rest
+}: TextAreaFieldProps) {
   const tid = id || name;
   return (
     <div className="w-full">
