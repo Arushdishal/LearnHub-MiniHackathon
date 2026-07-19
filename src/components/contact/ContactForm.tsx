@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from "react";
+import { motion } from "framer-motion";
 import { FiSend, FiRotateCcw } from "react-icons/fi";
 import InputField from "./InputField.js";
 import SelectField from "./SelectField.js";
@@ -17,11 +18,12 @@ const initial = {
   startDate: "",
   category: "",
   mode: "",
-  interests: [] as string[],
+  interests: [],
   message: "",
 };
 
 type ContactFormValues = typeof initial;
+
 type ContactFormErrors = Partial<Record<keyof ContactFormValues, string>>;
 
 const categoryOptions = [
@@ -120,14 +122,19 @@ export default function ContactForm() {
   }
 
   return (
-    <div className="contact-form-card">
-      <h2 className="contact-form-title">Enrollment Form</h2>
-      <p className="contact-form-subtitle">
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="rounded-3xl border border-white/60 bg-white/85 p-6 shadow-xl backdrop-blur-xl sm:p-8"
+    >
+      <h2 className="text-2xl font-bold text-slate-900">Enrollment Form</h2>
+      <p className="mt-1 text-sm text-slate-600">
         Tell us a bit about you — it takes less than a minute.
       </p>
 
-      <form onSubmit={handleSubmit} noValidate className="contact-form-grid">
-        {/* Row 1: Full Name + Email */}
+      <form onSubmit={handleSubmit} noValidate className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2">
         <InputField
           label="Full Name"
           name="fullName"
@@ -146,8 +153,6 @@ export default function ContactForm() {
           onChange={(e) => update("email", e.target.value)}
           error={errors.email}
         />
-
-        {/* Row 2: Phone + Start Date */}
         <InputField
           label="Phone Number"
           name="phone"
@@ -168,43 +173,37 @@ export default function ContactForm() {
           error={errors.startDate}
         />
 
-        {/* Row 3: Course Category (full width on mobile, half on desktop) */}
-        <div className="cf-span-half">
-          <SelectField
-            label="Course Category"
-            name="category"
-            value={values.category}
-            onChange={(e) => update("category", e.target.value)}
-            options={categoryOptions}
-            error={errors.category}
-          />
-        </div>
+        <SelectField
+          label="Course Category"
+          name="category"
+          value={values.category}
+          onChange={(e) => update("category", e.target.value)}
+          options={categoryOptions}
+          error={errors.category}
+        />
 
-        {/* Row 4: Learning Mode */}
-        <div className="cf-span-full">
+        <div className="sm:col-span-2">
           <RadioGroup
             label="Learning Mode"
             name="mode"
             value={values.mode}
             options={modeOptions}
-            onChange={(v: string) => update("mode", v)}
+            onChange={(v) => update("mode", v)}
             error={errors.mode}
           />
         </div>
 
-        {/* Row 5: Interests */}
-        <div className="cf-span-full">
+        <div className="sm:col-span-2">
           <CheckboxGroup
             label="Interests"
             values={values.interests}
             options={interestOptions}
-            onChange={(v: string[]) => update("interests", v)}
+            onChange={(v) => update("interests", v)}
             error={errors.interests}
           />
         </div>
 
-        {/* Row 6: Message */}
-        <div className="cf-span-full">
+        <div className="sm:col-span-2">
           <TextAreaField
             label="Message / Query"
             name="message"
@@ -216,22 +215,25 @@ export default function ContactForm() {
         </div>
 
         {submitError && (
-          <div role="alert" className="cf-error-banner cf-span-full">
+          <div
+            role="alert"
+            className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800 sm:col-span-2"
+          >
             {submitError}
           </div>
         )}
 
-        {/* Submit + Reset */}
-        <div className="cf-btn-row cf-span-full">
-          <button
+        <div className="flex flex-col gap-3 sm:col-span-2 sm:flex-row">
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
             type="submit"
             disabled={loading}
-            className="cf-btn-submit"
-            id="contact-submit-btn"
+            className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-indigo-600/25 transition-all hover:shadow-indigo-600/40 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {loading ? (
               <>
-                <span className="cf-spinner" />
+                <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" />
                 Submitting...
               </>
             ) : (
@@ -239,17 +241,18 @@ export default function ContactForm() {
                 <FiSend size={16} /> Submit
               </>
             )}
-          </button>
-          <button
+          </motion.button>
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
             type="button"
             onClick={handleReset}
-            className="cf-btn-reset"
-            id="contact-reset-btn"
+            className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3.5 text-sm font-semibold text-slate-700 shadow-sm transition-all hover:border-slate-300 hover:bg-slate-50"
           >
             <FiRotateCcw size={16} /> Reset
-          </button>
+          </motion.button>
         </div>
       </form>
-    </div>
+    </motion.div>
   );
 }
