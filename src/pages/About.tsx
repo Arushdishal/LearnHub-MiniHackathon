@@ -1,7 +1,15 @@
+import Hero from "../components/about/Hero";
+import Mission from "../components/about/Mission";
+import Values from "../components/about/Values";
+import Team from "../components/about/Team";
+
 const About = () => {
   return (
     <>
-      <h1>About Page</h1>
+      <Hero />
+      <Mission />
+      <Values />
+      <Team />
     </>
   );
 };

@@ -1,0 +1,98 @@
+
+.team-container{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:30px;
+    max-width:1200px;
+    margin:auto;
+}
+
+.team-card{
+    width:250px;
+    background:#fff;
+    border-radius:20px;
+    padding:30px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    transition:all .35s ease;
+    cursor:pointer;
+}
+
+.team-card:hover{
+    transform:translateY(-12px) scale(1.03);
+    box-shadow:0 20px 40px rgba(37,99,235,.25);
+}
+
+.team-photo{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    object-fit:cover;
+    border:4px solid #2563eb;
+    display:block;
+    margin:0 auto 20px;
+    transition:.35s;
+}
+
+.team-card:hover .team-photo{
+    transform:scale(1.08);
+}
+
+.team-avatar{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    background:#2563eb;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:55px;
+    margin:0 auto 20px;
+}
+
+.team-name{
+    margin:0;
+    font-size:30px;
+    color:#1e293b;
+    font-weight:700;
+}
+
+.team-role{
+    margin-top:10px;
+    color:#2563eb;
+    font-size:20px;
+    font-weight:600;
+}
+/* ---------- WHY CHOOSE CARDS ---------- */
+
+.value-card{
+    width:250px;
+    background:#fff;
+    border-radius:20px;
+    padding:30px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    transition:all .35s ease;
+    cursor:pointer;
+}
+
+.value-card:hover{
+    transform:translateY(-12px) scale(1.04);
+    box-shadow:0 20px 45px rgba(37,99,235,.25);
+}
+
+.value-icon{
+    font-size:60px;
+    margin-bottom:20px;
+    transition:.35s;
+}
+
+.value-card:hover .value-icon{
+    transform:scale(1.2) rotate(10deg);
+}
+
+.value-card:hover .team-name{
+    color:#2563eb;
+}
