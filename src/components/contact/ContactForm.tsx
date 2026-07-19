@@ -108,12 +108,12 @@ export default function ContactForm() {
       <p className="contact-form-subtitle">Tell us a bit about you — it takes less than a minute.</p>
 
       <form onSubmit={handleSubmit} noValidate className="contact-form-grid">
-        <InputField label="Full Name" name="fullName" type="text" placeholder="Jane Doe"
+        <InputField label="Full Name" name="fullName" type="text" placeholder="Your Name"
           value={values.fullName} onChange={(e) => update("fullName", e.target.value)} error={errors.fullName} />
-        <InputField label="Email" name="email" type="email" placeholder="jane@example.com"
+        <InputField label="Email" name="email" type="email" placeholder="email@example.com"
           value={values.email} onChange={(e) => update("email", e.target.value)} error={errors.email} />
         <InputField label="Phone Number" name="phone" type="tel" inputMode="numeric" maxLength={10}
-          placeholder="10-digit number" value={values.phone}
+          placeholder="Contact Number" value={values.phone}
           onChange={(e) => update("phone", e.target.value.replace(/\D/g, ""))} error={errors.phone} />
         <InputField label="Preferred Start Date" name="startDate" type="date"
           value={values.startDate} onChange={(e) => update("startDate", e.target.value)} error={errors.startDate} />
