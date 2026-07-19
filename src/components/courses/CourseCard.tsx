@@ -107,7 +107,7 @@ const CourseCard = ({ course }: CourseCardProps) => {
         >
           <div style={{ display: "flex", alignItems: "baseline", gap: "6px" }}>
             <span style={{ fontSize: "22px", fontWeight: 800, color: "#111827" }}>
-              ${course.price}
+              ₹{course.price}
             </span>
             {course.originalPrice && (
               <span style={{ fontSize: "13px", fontWeight: 500, color: "#9CA3AF", textDecoration: "line-through" }}>
