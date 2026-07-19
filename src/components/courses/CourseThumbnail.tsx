@@ -1,7 +1,7 @@
-import aiProductImg from "../../assets/course_ai_product.png";
-import reactTsImg from "../../assets/course_react_typescript.png";
-import dataStorytellingImg from "../../assets/course_data_storytelling.png";
-import growthMarketingImg from "../../assets/course_growth_marketing.png";
+import aiProductImg from "../../assets/courses/course_ai_product.png";
+import reactTsImg from "../../assets/courses/course_react_typescript.png";
+import dataStorytellingImg from "../../assets/courses/course_data_storytelling.png";
+import growthMarketingImg from "../../assets/courses/course_growth_marketing.png";
 
 interface CourseThumbnailProps {
   courseId: string;

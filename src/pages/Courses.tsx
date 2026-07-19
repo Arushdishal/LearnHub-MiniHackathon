@@ -343,7 +343,7 @@ const Courses = () => {
             </div>
           </div>
           <a
-            href="#courses"
+            href="/contact"
             style={{
               display: "inline-flex",
               alignItems: "center",
