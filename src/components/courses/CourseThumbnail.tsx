@@ -1,20 +1,72 @@
+import aiProductImg from "../../assets/course_ai_product.png";
+import reactTsImg from "../../assets/course_react_typescript.png";
+import dataStorytellingImg from "../../assets/course_data_storytelling.png";
+import growthMarketingImg from "../../assets/course_growth_marketing.png";
+
 interface CourseThumbnailProps {
-  title: string;
+  courseId: string;
   category: string;
-  accent: string;
 }
 
-const CourseThumbnail = ({ title, category, accent }: CourseThumbnailProps) => {
+const courseImages: Record<string, string> = {
+  "ai-product-design": aiProductImg,
+  "react-typescript": reactTsImg,
+  "data-storytelling": dataStorytellingImg,
+  "growth-marketing": growthMarketingImg,
+};
+
+const CourseThumbnail = ({ courseId, category }: CourseThumbnailProps) => {
+  const imageSrc = courseImages[courseId];
+
   return (
-    <div className={`relative overflow-hidden rounded-[12px] border border-white/40 p-[20px] ${accent}`}>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.35),_transparent_45%)]" />
-      <div className="relative flex h-[140px] flex-col justify-between">
-        <div className="text-[12px] font-semibold uppercase tracking-[0.24em] text-white/90">{category}</div>
-        <div>
-          <p className="text-[11px] uppercase tracking-[0.25em] text-white/70">Course preview</p>
-          <h3 className="mt-2 text-[18px] font-[700] leading-[1.35] text-white">{title}</h3>
-        </div>
-      </div>
+    <div
+      style={{
+        height: "150px",
+        position: "relative",
+        overflow: "hidden",
+        backgroundColor: "#F3F4F6",
+      }}
+    >
+      {imageSrc ? (
+        <img
+          src={imageSrc}
+          alt={category}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            display: "block",
+          }}
+        />
+      ) : (
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            backgroundColor: "#3563E9",
+          }}
+        />
+      )}
+      
+      {/* Category Pill overlay on top-left of the image */}
+      <span
+        style={{
+          position: "absolute",
+          top: "14px",
+          left: "14px",
+          fontSize: "10px",
+          fontWeight: 800,
+          textTransform: "uppercase",
+          letterSpacing: "0.12em",
+          color: "#fff",
+          backgroundColor: "rgba(0, 0, 0, 0.4)",
+          padding: "4px 8px",
+          borderRadius: "4px",
+          backdropFilter: "blur(2px)",
+        }}
+      >
+        {category}
+      </span>
     </div>
   );
 };

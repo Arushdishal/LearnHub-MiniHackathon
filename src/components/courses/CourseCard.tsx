@@ -1,4 +1,4 @@
-import { ArrowRight, Clock3, Star } from "lucide-react";
+import { ArrowRight, Clock3, Star, Users, BookOpen } from "lucide-react";
 import type { Course } from "../../types/course";
 import CourseThumbnail from "./CourseThumbnail";
 
@@ -8,35 +8,131 @@ interface CourseCardProps {
 
 const CourseCard = ({ course }: CourseCardProps) => {
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-[16px] border border-[#F3F4F6] bg-white p-[24px] transition-all duration-300 hover:-translate-y-[4px] hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)]">
-      <div className="mb-[20px]">
-        <CourseThumbnail title={course.title} category={course.category} accent={course.accent} />
-      </div>
+    <article
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
+        overflow: "hidden",
+        borderRadius: "14px",
+        border: "1px solid #E5E7EB",
+        backgroundColor: "#fff",
+        transition: "box-shadow 0.3s, transform 0.3s",
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.boxShadow = "0 8px 30px rgba(0,0,0,0.08)";
+        e.currentTarget.style.transform = "translateY(-2px)";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.boxShadow = "none";
+        e.currentTarget.style.transform = "translateY(0)";
+      }}
+    >
+      <CourseThumbnail courseId={course.id} category={course.category} />
 
-      <p className="text-[12px] font-semibold uppercase tracking-[0.24em] text-[#3563E9]">{course.category}</p>
-      <h3 className="mt-2 text-[17px] font-[700] leading-[1.5] text-[#111827]">{course.title}</h3>
-      <p className="mt-3 flex-1 text-[14px] leading-[1.65] text-[#6B7280]">{course.description}</p>
+      <div style={{ display: "flex", flexDirection: "column", flex: 1, padding: "20px" }}>
+        <h3 style={{ fontSize: "16px", fontWeight: 700, lineHeight: 1.35, color: "#111827", margin: 0 }}>
+          {course.title}
+        </h3>
 
-      <div className="mt-5 flex items-center justify-between border-t border-[#F3F4F6] pt-[16px] text-[14px] text-[#6B7280]">
-        <div className="flex items-center gap-[6px]">
-          <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
-          <span>{course.rating.toFixed(1)}</span>
-        </div>
-        <div className="flex items-center gap-[6px]">
-          <Clock3 className="h-4 w-4 text-[#9CA3AF]" />
-          <span>{course.duration}</span>
-        </div>
-      </div>
+        <p style={{ fontSize: "13px", lineHeight: 1.55, color: "#6B7280", marginTop: "8px" }}>
+          {course.description}
+        </p>
 
-      <div className="mt-5 flex items-center justify-between">
-        <div>
-          <p className="text-[12px] uppercase tracking-[0.24em] text-[#9CA3AF]">Price</p>
-          <p className="mt-1 text-[16px] font-[700] text-[#111827]">${course.price}</p>
+        {/* Instructor */}
+        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "14px" }}>
+          <div
+            style={{
+              width: "24px",
+              height: "24px",
+              borderRadius: "50%",
+              backgroundColor: "#EFF6FF",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: "10px",
+              fontWeight: 700,
+              color: "#3563E9",
+            }}
+          >
+            {course.instructor.split(" ").map((n) => n[0]).join("")}
+          </div>
+          <span style={{ fontSize: "12px", fontWeight: 500, color: "#6B7280" }}>
+            {course.instructor}
+          </span>
         </div>
-        <button className="inline-flex items-center gap-[8px] rounded-full bg-[#3563E9] px-[16px] py-[10px] text-[14px] font-semibold text-white transition-all duration-300 hover:bg-[#2850C8]">
-          Enroll
-          <ArrowRight className="h-4 w-4" />
-        </button>
+
+        <div style={{ flex: 1 }} />
+
+        {/* Stats row */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            marginTop: "16px",
+            fontSize: "11px",
+            fontWeight: 500,
+            color: "#6B7280",
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: "3px" }}>
+            <Star style={{ width: "12px", height: "12px", fill: "#F59E0B", color: "#F59E0B" }} />
+            <span style={{ color: "#111827", fontWeight: 600 }}>{course.rating.toFixed(1)}</span>
+          </div>
+          <div style={{ display: "flex", alignItems: "center", gap: "3px" }}>
+            <Users style={{ width: "12px", height: "12px", color: "#9CA3AF" }} />
+            <span>{course.students.toLocaleString()}</span>
+          </div>
+          <div style={{ display: "flex", alignItems: "center", gap: "3px" }}>
+            <BookOpen style={{ width: "12px", height: "12px", color: "#9CA3AF" }} />
+            <span>{course.lessons}</span>
+          </div>
+          <div style={{ display: "flex", alignItems: "center", gap: "3px" }}>
+            <Clock3 style={{ width: "12px", height: "12px", color: "#9CA3AF" }} />
+            <span>{course.duration}</span>
+          </div>
+        </div>
+
+        {/* Price & Enroll */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "flex-end",
+            justifyContent: "space-between",
+            marginTop: "16px",
+            paddingTop: "14px",
+            borderTop: "1px solid #F3F4F6",
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "baseline", gap: "6px" }}>
+            <span style={{ fontSize: "22px", fontWeight: 800, color: "#111827" }}>
+              ${course.price}
+            </span>
+            {course.originalPrice && (
+              <span style={{ fontSize: "13px", fontWeight: 500, color: "#9CA3AF", textDecoration: "line-through" }}>
+                ${course.originalPrice}
+              </span>
+            )}
+          </div>
+          <button
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "4px",
+              fontSize: "13px",
+              fontWeight: 700,
+              color: "#111827",
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              padding: 0,
+            }}
+          >
+            Enroll
+            <ArrowRight style={{ width: "14px", height: "14px" }} />
+          </button>
+        </div>
       </div>
     </article>
   );

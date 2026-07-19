@@ -10,17 +10,61 @@ const FAQItem = ({ item }: FAQItemProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="rounded-[16px] border border-[#F3F4F6] bg-[#F9FAFB] px-[24px] py-[20px] transition-all duration-300">
+    <div
+      style={{
+        borderBottom: "1px solid #F3F4F6",
+        backgroundColor: "#fff",
+      }}
+    >
       <button
-        className="flex w-full items-center justify-between gap-4 text-left"
         onClick={() => setIsOpen((prev) => !prev)}
         aria-expanded={isOpen}
+        style={{
+          display: "flex",
+          width: "100%",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: "12px",
+          padding: "14px 0",
+          textAlign: "left",
+          background: "none",
+          border: "none",
+          cursor: "pointer",
+        }}
       >
-        <span className="text-[16px] font-[700] text-[#111827]">{item.question}</span>
-        <ChevronDown className={`h-5 w-5 shrink-0 text-[#6B7280] transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} />
+        <span style={{ fontSize: "14px", fontWeight: 500, color: "#111827" }}>
+          {item.question}
+        </span>
+        <ChevronDown
+          style={{
+            width: "18px",
+            height: "18px",
+            color: "#9CA3AF",
+            flexShrink: 0,
+            transition: "transform 0.3s",
+            transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+          }}
+        />
       </button>
-      <div className={`grid transition-all duration-300 ${isOpen ? "grid-rows-[1fr] pt-3" : "grid-rows-[0fr]"}`}>
-        <p className="overflow-hidden text-[14px] leading-[1.7] text-[#6B7280]">{item.answer}</p>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateRows: isOpen ? "1fr" : "0fr",
+          transition: "grid-template-rows 0.3s",
+        }}
+      >
+        <div style={{ overflow: "hidden" }}>
+          <p
+            style={{
+              fontSize: "13px",
+              lineHeight: 1.6,
+              color: "#6B7280",
+              paddingBottom: "14px",
+            }}
+          >
+            {item.answer}
+          </p>
+        </div>
       </div>
     </div>
   );
