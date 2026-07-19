@@ -1,3 +1,4 @@
+import { Check, Star } from "lucide-react";
 import type { PricingPlan } from "../../types/course";
 
 interface PricingCardProps {
@@ -7,50 +8,124 @@ interface PricingCardProps {
 const PricingCard = ({ plan }: PricingCardProps) => {
   return (
     <article
-      className={`rounded-[16px] border p-[32px] transition-all duration-300 hover:-translate-y-[4px] hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)] ${
-        plan.highlighted
-          ? "border-[#3563E9] bg-gradient-to-br from-[#3563E9] to-[#2850C8] text-white"
-          : "border-[#F3F4F6] bg-white text-[#111827]"
-      }`}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        overflow: "hidden",
+        borderRadius: "16px",
+        backgroundColor: "#fff",
+        border: plan.highlighted ? "2px solid #3563E9" : "1px solid #E5E7EB",
+        boxShadow: plan.highlighted ? "0 4px 24px rgba(53, 99, 233, 0.1)" : "none",
+        transition: "transform 0.3s, box-shadow 0.3s",
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = "translateY(-4px)";
+        e.currentTarget.style.boxShadow = plan.highlighted
+          ? "0 12px 40px rgba(53, 99, 233, 0.15)"
+          : "0 8px 30px rgba(0,0,0,0.06)";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = "translateY(0)";
+        e.currentTarget.style.boxShadow = plan.highlighted
+          ? "0 4px 24px rgba(53, 99, 233, 0.1)"
+          : "none";
+      }}
     >
-      <div className="flex items-center justify-between gap-3">
-        <h3 className="text-[18px] font-[700]">{plan.name}</h3>
-        {plan.highlighted && (
-          <span className="rounded-full bg-white/20 px-[10px] py-[6px] text-[12px] font-semibold">
-            Best value
+      {plan.highlighted && (
+        <div
+          style={{
+            backgroundColor: "#3563E9",
+            textAlign: "center",
+            padding: "6px 0",
+            fontSize: "10px",
+            fontWeight: 800,
+            textTransform: "uppercase",
+            letterSpacing: "0.1em",
+            color: "#fff",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "4px",
+          }}
+        >
+          <Star style={{ width: "10px", height: "10px", fill: "#fff", color: "#fff" }} strokeWidth={3} /> MOST POPULAR
+        </div>
+      )}
+
+      <div style={{ display: "flex", flexDirection: "column", flex: 1, padding: "28px" }}>
+        <h3 style={{ fontSize: "20px", fontWeight: 800, color: "#111827", margin: 0 }}>
+          {plan.name}
+        </h3>
+
+        <p style={{ fontSize: "13px", lineHeight: 1.6, color: "#6B7280", marginTop: "8px" }}>
+          {plan.description}
+        </p>
+
+        <div style={{ display: "flex", alignItems: "flex-end", gap: "4px", marginTop: "20px" }}>
+          <span style={{ fontSize: "40px", fontWeight: 800, letterSpacing: "-1px", color: "#111827", lineHeight: 1 }}>
+            {plan.price}
           </span>
-        )}
+          <span style={{ fontSize: "14px", fontWeight: 500, color: "#6B7280", marginBottom: "6px" }}>
+            {plan.billing}
+          </span>
+        </div>
+
+        <div style={{ height: "1px", backgroundColor: "#F3F4F6", margin: "20px 0" }} />
+
+        <ul style={{ flex: 1, listStyle: "none", padding: 0, margin: 0 }}>
+          {plan.features.map((feature) => (
+            <li
+              key={feature}
+              style={{
+                display: "flex",
+                alignItems: "flex-start",
+                gap: "8px",
+                marginBottom: "12px",
+              }}
+            >
+              <Check
+                style={{
+                  width: "14px",
+                  height: "14px",
+                  marginTop: "2px",
+                  flexShrink: 0,
+                  color: "#3563E9",
+                }}
+                strokeWidth={3}
+              />
+              <span style={{ fontSize: "13px", lineHeight: 1.5, color: "#4B5563" }}>
+                {feature}
+              </span>
+            </li>
+          ))}
+        </ul>
+
+        <button
+          style={{
+            marginTop: "24px",
+            width: "100%",
+            padding: "12px",
+            borderRadius: "24px",
+            fontSize: "14px",
+            fontWeight: 700,
+            cursor: "pointer",
+            transition: "all 0.3s",
+            ...(plan.highlighted
+              ? {
+                  backgroundColor: "#3563E9",
+                  color: "#fff",
+                  border: "none",
+                }
+              : {
+                  backgroundColor: "#fff",
+                  color: "#111827",
+                  border: "1px solid #E5E7EB",
+                }),
+          }}
+        >
+          {plan.ctaLabel}
+        </button>
       </div>
-
-      <p className={`mt-3 text-[14px] leading-[1.65] ${plan.highlighted ? "text-blue-50" : "text-[#6B7280]"}`}>
-        {plan.description}
-      </p>
-
-      <div className="mt-6 flex items-end gap-[4px]">
-        <span className="text-[32px] font-[700]">{plan.price}</span>
-        <span className={`pb-[2px] text-[14px] ${plan.highlighted ? "text-blue-100" : "text-[#9CA3AF]"}`}>
-          {plan.billing}
-        </span>
-      </div>
-
-      <ul className="mt-6 space-y-3">
-        {plan.features.map((feature) => (
-          <li key={feature} className="flex items-start gap-[8px] text-[14px] leading-[1.6]">
-            <span className={`mt-[7px] h-[8px] w-[8px] shrink-0 rounded-full ${plan.highlighted ? "bg-white" : "bg-[#3563E9]"}`} />
-            <span>{feature}</span>
-          </li>
-        ))}
-      </ul>
-
-      <button
-        className={`mt-8 w-full rounded-full px-[16px] py-[12px] text-[14px] font-semibold transition ${
-          plan.highlighted
-            ? "bg-white text-[#3563E9] hover:bg-[#F8FAFF]"
-            : "bg-[#111827] text-white hover:bg-[#1F2937]"
-        }`}
-      >
-        {plan.ctaLabel}
-      </button>
     </article>
   );
 };
