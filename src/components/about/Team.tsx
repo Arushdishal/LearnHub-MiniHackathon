@@ -1,28 +1,30 @@
+import "../../styles/Team.css";
+
+import Ayush from "../../assets/team/Ayush.jpeg";
+import Arush from "../../assets/team/Arush.jpeg";
+import Aditya from "../../assets/team/Aditya.jpeg";
+import Shubham from "../../assets/team/Shubham.jpeg";
+
 const members = [
   {
     name: "Ayush",
-    role: "Team Leader",
-    emoji: "👨‍💻",
+    image: Ayush,
   },
   {
     name: "Arush",
-    role: "Frontend Developer",
-    emoji: "💻",
+    image: Arush,
   },
   {
     name: "Aditya",
-    role: "Frontend Developer",
-    emoji: "⚛️",
-  },
-  {
-    name: "Medhavi",
-    role: "UI/UX Designer",
-    emoji: "🎨",
+    image: Aditya,
   },
   {
     name: "Shubham",
-    role: "Backend Developer",
-    emoji: "🛠️",
+    image: Shubham,
+  },
+  {
+    name: "Medhavi",
+    image: null,
   },
 ];
 
@@ -31,7 +33,7 @@ const Team = () => {
     <section
       style={{
         padding: "90px 20px",
-        background: "#ffffff",
+        background: "#fff",
       }}
     >
       <h2
@@ -50,64 +52,33 @@ const Team = () => {
           textAlign: "center",
           color: "#64748b",
           marginBottom: "50px",
+          fontSize: "18px",
         }}
       >
         The passionate people behind LearnHub.
       </p>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit,minmax(230px,1fr))",
-          gap: "25px",
-          maxWidth: "1200px",
-          margin: "auto",
-        }}
-      >
+      <div className="team-container">
         {members.map((member) => (
-          <div
-            key={member.name}
-            style={{
-              background: "#fff",
-              borderRadius: "18px",
-              padding: "30px",
-              textAlign: "center",
-              boxShadow: "0 10px 25px rgba(0,0,0,.08)",
-            }}
-          >
-            <div
-              style={{
-                width: "90px",
-                height: "90px",
-                margin: "0 auto 20px",
-                borderRadius: "50%",
-                background: "#2563eb",
-                color: "#fff",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "40px",
-              }}
-            >
-              {member.emoji}
-            </div>
+          <div className="team-card" key={member.name}>
+            {member.image ? (
+              <img
+                src={member.image}
+                alt={member.name}
+                className="team-photo"
+              />
+            ) : (
+              <div className="team-avatar">
+                👩‍💻
+              </div>
+            )}
 
-            <h3
-              style={{
-                marginBottom: "8px",
-                color: "#1e293b",
-              }}
-            >
+            <h3 className="team-name">
               {member.name}
             </h3>
 
-            <p
-              style={{
-                color: "#2563eb",
-                fontWeight: "600",
-              }}
-            >
-              {member.role}
+            <p className="team-role">
+              Frontend Developer
             </p>
           </div>
         ))}

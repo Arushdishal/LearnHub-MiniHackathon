@@ -1,27 +1,29 @@
-const Values = () => {
-  const values = [
-    {
-      icon: "📚",
-      title: "Quality Learning",
-      desc: "Industry-designed courses with practical knowledge.",
-    },
-    {
-      icon: "💡",
-      title: "Innovation",
-      desc: "Learning with modern technologies and real projects.",
-    },
-    {
-      icon: "🤝",
-      title: "Community",
-      desc: "Supportive mentors and collaborative environment.",
-    },
-    {
-      icon: "🚀",
-      title: "Career Growth",
-      desc: "Helping students become job-ready professionals.",
-    },
-  ];
+import "../../styles/Team.css";
 
+const values = [
+  {
+    icon: "📚",
+    title: "Quality Learning",
+    desc: "Industry-designed courses with practical knowledge.",
+  },
+  {
+    icon: "💡",
+    title: "Innovation",
+    desc: "Learning with modern technologies and real projects.",
+  },
+  {
+    icon: "🤝",
+    title: "Community",
+    desc: "Supportive mentors and collaborative environment.",
+  },
+  {
+    icon: "🚀",
+    title: "Career Growth",
+    desc: "Helping students become job-ready professionals.",
+  },
+];
+
+const Values = () => {
   return (
     <section
       style={{
@@ -45,54 +47,29 @@ const Values = () => {
           textAlign: "center",
           color: "#64748b",
           marginBottom: "50px",
+          fontSize: "18px",
         }}
       >
         Everything you need to become industry ready.
       </p>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit,minmax(250px,1fr))",
-          gap: "25px",
-          maxWidth: "1100px",
-          margin: "auto",
-        }}
-      >
+      <div className="team-container">
         {values.map((item) => (
-          <div
-            key={item.title}
-            style={{
-              background: "white",
-              borderRadius: "18px",
-              padding: "30px",
-              textAlign: "center",
-              boxShadow: "0 10px 25px rgba(0,0,0,.08)",
-              transition: ".3s",
-            }}
-          >
-            <div
-              style={{
-                fontSize: "50px",
-                marginBottom: "15px",
-              }}
-            >
+          <div className="value-card" key={item.title}>
+            <div className="value-icon">
               {item.icon}
             </div>
 
-            <h3
-              style={{
-                marginBottom: "10px",
-                color: "#1e293b",
-              }}
-            >
+            <h3 className="team-name" style={{ fontSize: "26px" }}>
               {item.title}
             </h3>
 
             <p
               style={{
                 color: "#64748b",
-                lineHeight: "26px",
+                marginTop: "15px",
+                lineHeight: "30px",
+                fontSize: "18px",
               }}
             >
               {item.desc}
