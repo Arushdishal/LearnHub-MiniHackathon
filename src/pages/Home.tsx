@@ -1,7 +1,13 @@
+import Benefits from "../components/home/Benefits";
+import FeaturedCourses from "../components/home/FeaturedCourses";
+import Hero from "../components/home/Hero";
+
 const Home = () => {
   return (
     <>
-      <h1>Home Page</h1>
+      <Hero />
+      <FeaturedCourses />
+      <Benefits />
     </>
   );
 };
