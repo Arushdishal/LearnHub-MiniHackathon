@@ -18,6 +18,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+#root {
+  min-height: 100svh;
+}
+
 a {
   text-decoration: none;
   color: inherit;
