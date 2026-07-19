@@ -13,7 +13,7 @@ export default function MapSection() {
       <motion.div
         initial={{ opacity: 0, scale: 0.98 }}
         whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
+        viewport={{ once: true }} 
         transition={{ duration: 0.6 }}
         className="overflow-hidden rounded-3xl border border-slate-200 shadow-xl"
       >

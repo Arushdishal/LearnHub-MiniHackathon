@@ -16,7 +16,7 @@ export default function RadioGroup({ label, name, value, options, onChange, erro
               } ${error ? "border-red-400" : ""}`}
             >
               <input
-                type="radio"
+                type="radio" 
                 name={name}
                 value={o.value}
                 checked={active}

@@ -61,5 +61,5 @@ export default function ContactInfo() {
         </div>
       </div>
     </motion.aside>
-  );
+  ) ;
 }

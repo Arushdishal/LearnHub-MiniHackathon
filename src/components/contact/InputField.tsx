@@ -12,12 +12,12 @@ type InputFieldProps = InputHTMLAttributes<HTMLInputElement> & {
 export default function InputField({
   label,
   error,
-  id,
+  id, 
   name,
   className = "",
   ...rest
 }: InputFieldProps) {
-  const inputId = id || name;
+  const inputId = id ||  name;
   return (
     <div className="w-full">
       <label htmlFor={inputId} className="mb-1.5 block text-sm font-medium text-slate-700">

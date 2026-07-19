@@ -1,6 +1,6 @@
+import ContactForm from "../components/contact/ContactForm.tsx";
 import ContactHero from "../components/contact/ContactHero.tsx";
 import ContactInfo from "../components/contact/ContactInfo.tsx";
-import ContactForm from "../components/contact/ContactForm.tsx";
 import MapSection from "../components/contact/MapSection.tsx";
 // Contact / Enrollment page for LearnHub.
 // Desktop: info card (left) + form (right). Mobile: stacked.

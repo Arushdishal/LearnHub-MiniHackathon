@@ -17,7 +17,7 @@ export default function TextAreaField({
   className = "",
   ...rest
 }: TextAreaFieldProps) {
-  const tid = id || name;
+  const tid = id || name; 
   return (
     <div className="w-full">
       <label htmlFor={tid} className="mb-1.5 block text-sm font-medium text-slate-700">

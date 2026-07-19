@@ -19,7 +19,7 @@ export default function SuccessMessage({ onReset }: SuccessMessageProps) {
         animate={{ scale: 1, rotate: 0 }}
         transition={{ delay: 0.15, type: "spring", stiffness: 200, damping: 15 }}
         className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 text-white shadow-lg shadow-emerald-500/30"
-      >
+      > 
         <FiCheckCircle size={40} />
       </motion.div>
       <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">

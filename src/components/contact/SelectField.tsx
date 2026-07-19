@@ -18,7 +18,7 @@ type SelectFieldProps = SelectHTMLAttributes<HTMLSelectElement> & {
 // Reusable select with a leading placeholder option.
 export default function SelectField({
   label,
-  error,
+  error, 
   options,
   placeholder = "Select an option",
   id,
