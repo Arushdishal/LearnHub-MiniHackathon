@@ -1,26 +1,41 @@
+import {
+  BookOpen,
+  Award,
+  Users,
+  Clock,
+} from "lucide-react";
+
 export const features = [
   {
     id: 1,
-    title: "Live Classes",
+    title: "Live Interactive Classes",
     description:
-      "Attend interactive live sessions conducted by experienced instructors.",
+      "Attend instructor-led sessions with real-time doubt solving and discussions.",
+    icon: Users,
+    color: "from-blue-500 to-cyan-500",
   },
   {
     id: 2,
-    title: "Certification",
+    title: "Industry Certification",
     description:
-      "Receive industry-recognized certificates after successful completion.",
+      "Earn certificates recognized by leading companies after completion.",
+    icon: Award,
+    color: "from-emerald-500 to-green-500",
   },
   {
     id: 3,
-    title: "Mentorship",
+    title: "Expert Mentorship",
     description:
-      "Get one-on-one guidance from experienced mentors throughout your learning.",
+      "Receive career guidance from professionals working in top companies.",
+    icon: BookOpen,
+    color: "from-purple-500 to-violet-500",
   },
   {
     id: 4,
-    title: "Flexible Schedule",
+    title: "Flexible Learning",
     description:
-      "Learn anytime with flexible class timings that fit your routine.",
+      "Learn anytime with recorded lectures and lifetime access.",
+    icon: Clock,
+    color: "from-orange-500 to-red-500",
   },
 ];

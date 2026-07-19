@@ -3,49 +3,71 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 const navLinks = [
-  {
-    name: "Home",
-    path: "/",
-  },
-  {
-    name: "Courses",
-    path: "/courses",
-  },
-  {
-    name: "Contact",
-    path: "/contact",
-  },
-  {
-    name: "About",
-    path: "/about",
-  },
+  { name: "Home", path: "/" },
+  { name: "Courses", path: "/courses" },
+  { name: "Contact", path: "/contact" },
+  { name: "About", path: "/about" },
 ];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-gray-200 bg-white">
-      <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
+    <header
+      id="navbar"
+      style={{
+        position: "sticky",
+        top: 0,
+        zIndex: 50,
+        backgroundColor: "#ffffff",
+        borderBottom: "1px solid #e5e7eb",
+      }}
+    >
+      <nav
+        style={{
+          maxWidth: "1200px",
+          margin: "0 auto",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          padding: "0 32px",
+          height: "72px",
+        }}
+      >
         <NavLink
           to="/"
-          className="text-3xl font-bold text-blue-600"
+          style={{
+            fontSize: "24px",
+            fontWeight: 700,
+            color: "#3563E9",
+            letterSpacing: "-0.5px",
+          }}
         >
           LearnHub
         </NavLink>
 
-        <ul className="hidden items-center gap-8 md:flex">
+        {/* Desktop Nav */}
+        <ul
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "36px",
+            listStyle: "none",
+          }}
+          className="desktop-nav"
+        >
           {navLinks.map((link) => (
             <li key={link.name}>
               <NavLink
                 to={link.path}
-                className={({ isActive }) =>
-                  `font-medium transition-colors ${
-                    isActive
-                      ? "text-blue-600"
-                      : "text-gray-700 hover:text-blue-600"
-                  }`
-                }
+                style={({ isActive }) => ({
+                  fontSize: "15px",
+                  fontWeight: 500,
+                  color: isActive ? "#3563E9" : "#4B5563",
+                  transition: "color 0.2s",
+                  borderBottom: isActive ? "2px solid #3563E9" : "2px solid transparent",
+                  paddingBottom: "4px",
+                })}
               >
                 {link.name}
               </NavLink>
@@ -53,29 +75,44 @@ const Navbar = () => {
           ))}
         </ul>
 
+        {/* Mobile Toggle */}
         <button
-          className="md:hidden"
+          className="mobile-toggle"
           onClick={() => setIsOpen(!isOpen)}
+          style={{
+            display: "none",
+            background: "none",
+            border: "none",
+            color: "#374151",
+          }}
         >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </nav>
 
+      {/* Mobile Menu */}
       {isOpen && (
-        <div className="border-t border-gray-200 bg-white md:hidden">
-          <ul className="flex flex-col">
+        <div
+          className="mobile-menu"
+          style={{
+            borderTop: "1px solid #e5e7eb",
+            backgroundColor: "#ffffff",
+          }}
+        >
+          <ul style={{ display: "flex", flexDirection: "column" }}>
             {navLinks.map((link) => (
               <li key={link.name}>
                 <NavLink
                   to={link.path}
                   onClick={() => setIsOpen(false)}
-                  className={({ isActive }) =>
-                    `block px-6 py-4 font-medium transition-colors ${
-                      isActive
-                        ? "bg-blue-50 text-blue-600"
-                        : "text-gray-700 hover:bg-gray-100"
-                    }`
-                  }
+                  style={({ isActive }) => ({
+                    display: "block",
+                    padding: "16px 24px",
+                    fontWeight: 500,
+                    color: isActive ? "#3563E9" : "#4B5563",
+                    backgroundColor: isActive ? "#EFF6FF" : "transparent",
+                    transition: "all 0.2s",
+                  })}
                 >
                   {link.name}
                 </NavLink>
@@ -84,6 +121,22 @@ const Navbar = () => {
           </ul>
         </div>
       )}
+
+      <style>{`
+        @media (max-width: 768px) {
+          .desktop-nav {
+            display: none !important;
+          }
+          .mobile-toggle {
+            display: block !important;
+          }
+        }
+        @media (min-width: 769px) {
+          .mobile-menu {
+            display: none !important;
+          }
+        }
+      `}</style>
     </header>
   );
 };
